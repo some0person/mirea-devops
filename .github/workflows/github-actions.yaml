@@ -19,11 +19,8 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build Docker images
-        uses: docker compose build
-
       - name: Start services with Docker Compose
         run: docker compose up -d
 
-      - name: Run tests
+      - name: Run migration
         run: docker compose exec -T web python3 manage.py migrate
