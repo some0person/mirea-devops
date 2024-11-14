@@ -19,6 +19,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: Build Docker images
+        uses: docker compose build
+
       - name: Start services with Docker Compose
         run: docker compose up -d
 
