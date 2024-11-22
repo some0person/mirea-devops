@@ -1,4 +1,4 @@
-name: Django and PostgreSQL
+name: Flask and PostgreSQL
 
 on:
   push:

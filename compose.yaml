@@ -3,6 +3,8 @@ services:
     build: postgresql
     image: postgres:alpine
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     env_file:
       - .env
     volumes:
@@ -19,12 +21,14 @@ services:
       start_period: 10s
 
   web:
-    build: django
+    build: flask
     ports:
-      - "8000:8000"
+      - "80:5000"
     depends_on:
       db:
         condition: service_healthy
+    env_file:
+      - .env
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DATABASE_PORT}/${POSTGRES_DB}
 
