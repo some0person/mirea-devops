@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   deploy:
@@ -20,7 +17,4 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Start services with Docker Compose
-        run: docker compose up -d
-
-      - name: Run migration
-        run: docker compose exec -T web python3 manage.py migrate
+        run: docker compose up --build -d
