@@ -3,8 +3,6 @@ services:
     build: postgresql
     image: postgres:alpine
     restart: unless-stopped
-    ports:
-      - "5432:5432"
     env_file:
       - .env
     volumes:
@@ -29,8 +27,6 @@ services:
         condition: service_healthy
     env_file:
       - .env
-    environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DATABASE_PORT}/${POSTGRES_DB}
 
 volumes:
   postgres_data:
